@@ -27,3 +27,6 @@ dist-ssr
 /package-lock.json
 /docs/
 /src/config/
+/backend/server.js
+backend/node_modules/
+backend/package-lock.json

@@ -13,10 +13,16 @@
     "@heroicons/vue": "^2.2.0",
     "@tailwindcss/cli": "^4.1.18",
     "@tailwindcss/vite": "^4.1.18",
+    "axios": "^1.13.6",
+    "cors": "^2.8.6",
     "daisyui": "^5.5.14",
+    "express": "^5.2.1",
     "firebase": "^12.8.0",
+    "mongodb": "^7.1.0",
+    "mongoose": "^9.3.0",
     "tailwindcss": "^4.1.18",
     "vue": "^3.5.24",
+    "vue-router": "^5.0.3",
     "vuefire": "^3.2.2"
   },
   "devDependencies": {
