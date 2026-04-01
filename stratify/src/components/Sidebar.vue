@@ -1,14 +1,13 @@
 <template>
   <div class="w-82 p-5 min-h-screen bg-[#009bd6] overflow-hidden">
-   
-    <nav class="flex flex-col gap-4 p-4 h-full text-white">
+     <nav class="flex flex-col gap-4 p-4 h-full text-white">
       
-      <!-- Лого като линк към Home -->
+
       <router-link
         to="/"
-        class="flex items-center justify-center mb-6 text-xl font-bold hover:text-[#00b8ff]"
+        class="flex w-60 items-center justify-center"
       >
-        Stratify
+          <img  src="../assets/Logo.png" alt="Logo"  />
       </router-link>
 
       <!-- Меню линкове -->
