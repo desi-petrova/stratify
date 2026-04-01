@@ -8,7 +8,9 @@ const articlesSchema = new mongoose.Schema({
         required: true  
     },
     name: String,
-    category: String,
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Category"},
     unit: String,
     note: String,
     createdOn: {

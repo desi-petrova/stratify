@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { reactive } from "vue"
+import { reactive, ref, onMounted } from "vue"
 import { createArticle, type Article } from "../services/articleService.ts"
+import { getCategories, type Category } from "../services/categoryService.ts"
 
 
 const article = reactive<Article>({
@@ -11,10 +12,24 @@ const article = reactive<Article>({
   note: "",
 })
 
+const categories = ref<Category[]>([])
+const emit = defineEmits<{
+  (e: 'article-added', article: Article): void
+}>()
+
+onMounted(async () => {
+  try {
+    const res = await getCategories()
+    categories.value = res
+  } catch (err) {
+    console.error(err)
+  }
+})
+
 const saveArticle = async () => {
   try {
-    await createArticle(article)
-
+    const newArticle = await createArticle(article)
+    emit('article-added', newArticle)
     const modal = document.getElementById("my_modal_5") as HTMLDialogElement
     modal.close()
     Object.assign(article, {
@@ -53,16 +68,26 @@ const saveArticle = async () => {
          v-model="article.name"/>
 
          <label class="label text-black">Category</label>
-         <input type="text" 
-         class="input input-primary" 
-         placeholder="Category" 
-         v-model="article.category"/>
+          <select class="select select-primary"
+            placeholder="Choose category"
+            v-model="article.category">
+          <option disabled selected>Choose category</option>
+          <option 
+           v-for="category in categories" 
+           :key="category._id" 
+           :value="category._id">{{category.name}}</option>
+          </select>
 
          <label class="label text-black">Unit</label>
-         <input type="text" 
-         class="input input-primary" 
-         placeholder="Unit"
-         v-model="article.unit" />
+         <select class="select select-primary"
+         placeholder="Choose unit"
+         v-model="article.unit">
+          <option disabled selected>Choose unit</option>
+           <option value="Pcs">Pcs</option>
+           <option value="Package">Package</option>
+           <option value="Box">Box</option>
+           <option value="Carton">Carton</option>
+        </select>
 
          <label class="label text-black">Note</label>
          <input type="text" 

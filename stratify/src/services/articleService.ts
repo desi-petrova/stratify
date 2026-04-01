@@ -12,7 +12,11 @@ export interface Article {
 
 // CREATE artile
 export const createArticle = async (article: Article) => {
+    console.log("before")
+
   const response = await api.post("/articles", article)
+   console.log("after")
+  console.log(response.data)
   return response.data
 }
 

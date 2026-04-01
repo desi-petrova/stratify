@@ -12,10 +12,14 @@ const customer = reactive<Customer>({
   note: "",
 })
 
+const emit = defineEmits<{
+  (e: 'customer-added', customer: Customer): void
+}>()
+
 const saveCustomer = async () => {
   try {
-    await createCustomer(customer)
-
+    const newCustomer = await createCustomer(customer)
+    emit('customer-added', newCustomer)
     const modal = document.getElementById("my_modal_5") as HTMLDialogElement
     modal.close()
     Object.assign(customer, {

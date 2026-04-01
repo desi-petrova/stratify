@@ -12,9 +12,14 @@ const company = reactive<Company>({
   note: "",
 })
 
+const emit = defineEmits<{
+  (e: 'company-added', company: Company): void
+}>()
+
 const saveCompany = async () => {
   try {
-    await createCompany(company)
+    const newCompany = await createCompany(company)
+    emit('company-added', newCompany)
 
     const modal = document.getElementById("my_modal_5") as HTMLDialogElement
     modal.close()

@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import { ref } from "vue"
-import { createCategory } from "../services/categoryService.ts"
+import { createCategory, type Category } from "../services/categoryService.ts"
 
 const category = ref<string>("")
 
+const emit = defineEmits<{
+  (e: 'category-added', article: Category): void
+}>()
+
 const saveCategory = async () => {
   try {
-    await createCategory(category.value)
-
+    const newCategory = await createCategory(category.value)
+    emit('category-added', newCategory)
     const modal = document.getElementById("my_modal_5") as HTMLDialogElement
     modal.close()
     category.value = ""

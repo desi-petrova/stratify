@@ -12,12 +12,16 @@ onMounted(async () => {
     console.error(err)
   }
 })
+
+const handleArticleAdded = (article: Article) => {
+  articles.value.push(article)
+}
 </script>
 
 <template>
   <h3 class="text-2xl font-bold m-5"> Articles </h3>
   <div class="flex justify-end">
-  <ArticlesForm />
+  <ArticlesForm @article-added="handleArticleAdded"/>
   
   </div>
   <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">

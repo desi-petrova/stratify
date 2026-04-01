@@ -12,12 +12,16 @@ onMounted(async () => {
     console.error(err)
   }
 })
+
+const handleCategoryAdded = (category: Category) => {
+  categories.value.push(category)
+}
 </script>
 
 <template>
     <h3 class="text-2xl font-bold m-5">Categories</h3>
     <div class="flex justify-end">
-    <ArticleCategoryForm />
+    <ArticleCategoryForm @category-added="handleCategoryAdded"/>
     </div>
      <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
   <table class="table">

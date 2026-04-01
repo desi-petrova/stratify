@@ -9,6 +9,7 @@ exports.createArticle = async (req, res) => {
 
     res.status(201).json(article)
   } catch (error) {
+    console.error(error)
     res.status(500).json({ message: error.message })
   }
 }
